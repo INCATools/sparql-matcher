@@ -1,0 +1,20 @@
+prefix skos: <http://www.w3.org/2004/02/skos/core#>
+prefix oio: <http://www.geneontology.org/formats/oboInOwl#>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+prefix owl: <http://www.w3.org/2002/07/owl#>
+prefix sssom: <http://purl.org/sssom/meta/>
+prefix src_predicate: <http://purl.org/sssom/meta/subject_source_field>
+
+SELECT ?s ?sp ?o ?op
+WHERE {
+  ?s ?sp ?concept ;
+     a ?sType .
+  ?o ?op ?concept ;
+     a ?oType .
+  ?concept a skos:Concept .
+
+  FILTER(?s != ?o)
+  FILTER(isIRI(?s))
+  FILTER(isIRI(?o))
+}

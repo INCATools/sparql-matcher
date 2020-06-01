@@ -1,0 +1,53 @@
+prefix skos: <http://www.w3.org/2004/02/skos/core#>
+prefix oio: <http://www.geneontology.org/formats/oboInOwl#>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+prefix owl: <http://www.w3.org/2002/07/owl#>
+prefix sm: <http://purl.org/sssom/meta/>
+prefix st: <http://purl.org/sssom/type/>
+prefix src_predicate: <http://purl.org/sssom/meta/subject_source_field>
+prefix dcterms: <http://purl.org/dc/terms/>
+
+SELECT
+ ?subject_id
+ ?subject_label
+ ?predicate_id
+ ?object_id
+ ?object_label
+ ?match_type
+ ?subject_source
+ ?object_source
+ ?subject_match_field
+ ?object_match_field
+ ?subject_category
+ ?object_category
+WHERE {
+  [
+   a st:Match ;
+   sm:predicate_id ?predicate_id ;
+   sm:subject_id ?subject_id ;
+   sm:subject_match_field ?subject_match_field ;
+   sm:object_id ?object_id ;
+   sm:object_match_field ?object_match_field ;
+   sm:match_type ?match_type ;
+  ]
+
+  OPTIONAL {
+    ?subject_id rdfs:label ?subject_label
+  }
+  OPTIONAL {
+    ?subject_id dcterms:source ?subject_source
+  }
+  OPTIONAL {
+    ?object_id rdfs:label ?object_label
+  }
+  OPTIONAL {
+    ?object_id dcterms:source ?object_source
+  }
+  OPTIONAL {
+    ?subject_id skos:inScheme ?subject_category
+  }
+  OPTIONAL {
+    ?object_id skos:inScheme ?object_category
+  }
+}

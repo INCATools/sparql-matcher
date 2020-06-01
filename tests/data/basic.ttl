@@ -1,0 +1,414 @@
+@prefix : <http://example.org/> .
+@prefix a: <http://example.org/a/> .
+@prefix x: <http://example.org/x/> .
+@prefix y: <http://example.org/y/> .
+@prefix z: <http://example.org/z/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix oio: <http://www.geneontology.org/formats/oboInOwl#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xref: <http://www.geneontology.org/formats/oboInOwl#hasDbXref> .
+@prefix UBERON: <http://purl.obolibrary.org/obo/UBERON_> .
+@prefix anatomy: <https://w3id.org/biolink/vocab/AnatomicalEntity> .
+@prefix category: <http://dbpedia.org/ontology/category> .
+@base <http://example.org/test.owl> .
+
+<http://example.org/test.owl> rdf:type owl:Ontology .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://dbpedia.org/ontology/category
+<http://dbpedia.org/ontology/category> rdf:type owl:AnnotationProperty .
+
+
+###  http://www.geneontology.org/formats/oboInOwl#hasBroadSynonym
+oio:hasBroadSynonym rdf:type owl:AnnotationProperty .
+
+
+###  http://www.geneontology.org/formats/oboInOwl#hasDbXref
+oio:hasDbXref rdf:type owl:AnnotationProperty .
+
+
+###  http://www.geneontology.org/formats/oboInOwl#hasExactSynonym
+oio:hasExactSynonym rdf:type owl:AnnotationProperty .
+
+
+###  http://www.geneontology.org/formats/oboInOwl#hasRelatedSynonym
+oio:hasRelatedSynonym rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2000/01/rdf-schema#label
+rdfs:label rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/ns/shacl#declare
+sh:declare rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/ns/shacl#namespace
+sh:namespace rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/ns/shacl#prefix
+sh:prefix rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://example.org/a/bone_of_foot
+a:bone_of_foot rdf:type owl:Class ;
+               rdfs:subClassOf a:organ ;
+               <http://dbpedia.org/ontology/category> <https://w3id.org/biolink/vocab/AnatomicalEntity> ;
+               rdfs:label "bone of foot" .
+
+
+###  http://example.org/a/bone_of_hand
+a:bone_of_hand rdf:type owl:Class ;
+               rdfs:subClassOf a:organ ;
+               <http://dbpedia.org/ontology/category> <https://w3id.org/biolink/vocab/AnatomicalEntity> ;
+               rdfs:label "bone of hand" .
+
+
+###  http://example.org/a/organ
+a:organ rdf:type owl:Class .
+
+
+###  http://example.org/x/appendage
+x:appendage rdf:type owl:Class ;
+            <http://dbpedia.org/ontology/category> <https://w3id.org/biolink/vocab/AnatomicalEntity> ;
+            rdfs:label "appendage" .
+
+
+###  http://example.org/x/bone_element
+x:bone_element rdf:type owl:Class ;
+               rdfs:subClassOf x:organ ;
+               <http://dbpedia.org/ontology/category> <https://w3id.org/biolink/vocab/AnatomicalEntity> ;
+               oio:hasBroadSynonym "bone" ;
+               oio:hasDbXref "UBERON:0001474" ;
+               rdfs:label "bone element" .
+
+
+###  http://example.org/x/bone_tissue
+x:bone_tissue rdf:type owl:Class ;
+              rdfs:subClassOf x:tissue ;
+              <http://dbpedia.org/ontology/category> <https://w3id.org/biolink/vocab/AnatomicalEntity> ;
+              oio:hasBroadSynonym "bone" ;
+              oio:hasDbXref "UBERON:0002481" ;
+              rdfs:label "bone tissue" .
+
+
+###  http://example.org/x/eye
+x:eye rdf:type owl:Class ;
+      rdfs:subClassOf x:organ ;
+      <http://dbpedia.org/ontology/category> <https://w3id.org/biolink/vocab/AnatomicalEntity> ;
+      oio:hasDbXref "UBERON:0000970" ;
+      rdfs:label "eye" .
+
+
+###  http://example.org/x/eyeball
+x:eyeball rdf:type owl:Class ;
+          rdfs:subClassOf x:region ;
+          <http://dbpedia.org/ontology/category> <https://w3id.org/biolink/vocab/AnatomicalEntity> ;
+          oio:hasDbXref "UBERON:0010230" ;
+          rdfs:label "eyeball" .
+
+
+###  http://example.org/x/foot
+x:foot rdf:type owl:Class ;
+       rdfs:subClassOf x:appendage ;
+       <http://dbpedia.org/ontology/category> <https://w3id.org/biolink/vocab/AnatomicalEntity> ;
+       oio:hasDbXref "UBERON:0002387" ;
+       oio:hasExactSynonym "foot" ;
+       rdfs:label "pes" .
+
+
+###  http://example.org/x/hand
+x:hand rdf:type owl:Class ;
+       rdfs:subClassOf x:appendage ;
+       <http://dbpedia.org/ontology/category> <https://w3id.org/biolink/vocab/AnatomicalEntity> ;
+       oio:hasDbXref "UBERON:0002398" ;
+       oio:hasExactSynonym "hand" ;
+       rdfs:label "manus" .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource x:hand ;
+   owl:annotatedProperty oio:hasExactSynonym ;
+   owl:annotatedTarget "hand" ;
+   rdfs:seeAlso "foo"
+ ] .
+
+
+###  http://example.org/x/heart
+x:heart rdf:type owl:Class ;
+        rdfs:subClassOf x:organ ;
+        <http://dbpedia.org/ontology/category> <https://w3id.org/biolink/vocab/AnatomicalEntity> ;
+        oio:hasDbXref "BAD:ORGAN" ,
+                      "UBERON:0000948" ;
+        rdfs:label "heart" .
+
+
+###  http://example.org/x/hindlimb
+x:hindlimb rdf:type owl:Class ;
+           rdfs:subClassOf x:appendage ;
+           <http://dbpedia.org/ontology/category> <https://w3id.org/biolink/vocab/AnatomicalEntity> ;
+           rdfs:label "hindlimb" .
+
+
+###  http://example.org/x/liver
+x:liver rdf:type owl:Class ;
+        rdfs:subClassOf x:organ ;
+        <http://dbpedia.org/ontology/category> <https://w3id.org/biolink/vocab/AnatomicalEntity> ;
+        oio:hasDbXref "BAD:ORGAN" ,
+                      "UBERON:0002107" ;
+        rdfs:label "liver" .
+
+
+###  http://example.org/x/lung
+x:lung rdf:type owl:Class ;
+       rdfs:subClassOf x:organ ;
+       <http://dbpedia.org/ontology/category> <https://w3id.org/biolink/vocab/AnatomicalEntity> ;
+       oio:hasDbXref "BAD:ORGAN" ,
+                     "UBERON:0002048" ;
+       rdfs:label "lung" .
+
+
+###  http://example.org/x/obsolete_leg
+x:obsolete_leg rdf:type owl:Class ;
+               <http://dbpedia.org/ontology/category> <https://w3id.org/biolink/vocab/AnatomicalEntity> ;
+               oio:hasRelatedSynonym "hindlimb" ;
+               rdfs:label "leg" ;
+               owl:deprecated "true"^^xsd:boolean .
+
+
+###  http://example.org/x/organ
+x:organ rdf:type owl:Class ;
+        <http://dbpedia.org/ontology/category> <https://w3id.org/biolink/vocab/AnatomicalEntity> ;
+        rdfs:label "organ"@en .
+
+
+###  http://example.org/x/region
+x:region rdf:type owl:Class ;
+         <http://dbpedia.org/ontology/category> <https://w3id.org/biolink/vocab/AnatomicalEntity> ;
+         rdfs:label "region" .
+
+
+###  http://example.org/x/tissue
+x:tissue rdf:type owl:Class ;
+         <http://dbpedia.org/ontology/category> <https://w3id.org/biolink/vocab/AnatomicalEntity> ;
+         rdfs:label "tissue" .
+
+
+###  http://example.org/y/appendage
+y:appendage rdf:type owl:Class ;
+            <http://dbpedia.org/ontology/category> <https://w3id.org/biolink/vocab/AnatomicalEntity> ;
+            rdfs:label "appendages" .
+
+
+###  http://example.org/y/bone
+y:bone rdf:type owl:Class ;
+       rdfs:subClassOf y:organ ;
+       <http://dbpedia.org/ontology/category> <https://w3id.org/biolink/vocab/AnatomicalEntity> ;
+       oio:hasDbXref "UBERON:0001474" ;
+       oio:hasRelatedSynonym "bone element" ;
+       rdfs:label "bones" .
+
+
+###  http://example.org/y/eye
+y:eye rdf:type owl:Class ;
+      rdfs:subClassOf y:organ ;
+      <http://dbpedia.org/ontology/category> <https://w3id.org/biolink/vocab/AnatomicalEntity> ;
+      oio:hasDbXref "UBERON:0000970" ;
+      rdfs:label "eyes" .
+
+
+###  http://example.org/y/foot
+y:foot rdf:type owl:Class ;
+       rdfs:subClassOf y:appendage ;
+       <http://dbpedia.org/ontology/category> <https://w3id.org/biolink/vocab/AnatomicalEntity> ;
+       oio:hasDbXref "UBERON:0002387" ;
+       rdfs:label "feet" .
+
+
+###  http://example.org/y/hand
+y:hand rdf:type owl:Class ;
+       rdfs:subClassOf y:appendage ;
+       <http://dbpedia.org/ontology/category> <https://w3id.org/biolink/vocab/AnatomicalEntity> ;
+       oio:hasDbXref "UBERON:0002398" ;
+       rdfs:label "hands" .
+
+
+###  http://example.org/y/heart
+y:heart rdf:type owl:Class ;
+        rdfs:subClassOf y:organ ;
+        <http://dbpedia.org/ontology/category> <https://w3id.org/biolink/vocab/AnatomicalEntity> ;
+        oio:hasDbXref "UBERON:0000948" ;
+        rdfs:label "hearts" .
+
+
+###  http://example.org/y/leg
+y:leg rdf:type owl:Class ;
+      rdfs:subClassOf y:appendage ;
+      <http://dbpedia.org/ontology/category> <https://w3id.org/biolink/vocab/AnatomicalEntity> ;
+      oio:hasExactSynonym "leg" ;
+      rdfs:label "legs" .
+
+
+###  http://example.org/y/liver
+y:liver rdf:type owl:Class ;
+        rdfs:subClassOf y:organ ;
+        <http://dbpedia.org/ontology/category> <https://w3id.org/biolink/vocab/AnatomicalEntity> ;
+        oio:hasDbXref "UBERON:0002107" ;
+        rdfs:label "livers" .
+
+
+###  http://example.org/y/lung
+y:lung rdf:type owl:Class ;
+       rdfs:subClassOf y:organ ;
+       <http://dbpedia.org/ontology/category> <https://w3id.org/biolink/vocab/AnatomicalEntity> ;
+       oio:hasDbXref "UBERON:0002048" ;
+       rdfs:label "lungs" .
+
+
+###  http://example.org/y/organ
+y:organ rdf:type owl:Class ;
+        <http://dbpedia.org/ontology/category> <https://w3id.org/biolink/vocab/AnatomicalEntity> ;
+        rdfs:label "organs" .
+
+
+###  http://example.org/y/region
+y:region rdf:type owl:Class ;
+         <http://dbpedia.org/ontology/category> <https://w3id.org/biolink/vocab/AnatomicalEntity> ;
+         rdfs:label "regions" .
+
+
+###  http://example.org/y/tissue
+y:tissue rdf:type owl:Class ;
+         <http://dbpedia.org/ontology/category> <https://w3id.org/biolink/vocab/AnatomicalEntity> ;
+         rdfs:label "tissues" .
+
+
+###  http://example.org/z/appendage
+z:appendage rdf:type owl:Class ;
+            <http://dbpedia.org/ontology/category> <https://w3id.org/biolink/vocab/AnatomicalEntity> ;
+            rdfs:label "APPENDAGE" .
+
+
+###  http://example.org/z/bone_element
+z:bone_element rdf:type owl:Class ;
+               rdfs:subClassOf z:organ ;
+               <http://dbpedia.org/ontology/category> <https://w3id.org/biolink/vocab/AnatomicalEntity> ;
+               oio:hasBroadSynonym "bone" ;
+               oio:hasDbXref "UBERON:0001474" .
+
+
+###  http://example.org/z/bone_tissue
+z:bone_tissue rdf:type owl:Class ;
+              rdfs:subClassOf z:tissue ;
+              <http://dbpedia.org/ontology/category> <https://w3id.org/biolink/vocab/AnatomicalEntity> ;
+              oio:hasBroadSynonym "bone" ;
+              oio:hasDbXref "UBERON:0002481" .
+
+
+###  http://example.org/z/eye
+z:eye rdf:type owl:Class ;
+      rdfs:subClassOf z:organ ;
+      <http://dbpedia.org/ontology/category> <https://w3id.org/biolink/vocab/AnatomicalEntity> ;
+      oio:hasDbXref "UBERON:0000970" .
+
+
+###  http://example.org/z/eyeball
+z:eyeball rdf:type owl:Class ;
+          rdfs:subClassOf z:region ;
+          <http://dbpedia.org/ontology/category> <https://w3id.org/biolink/vocab/AnatomicalEntity> ;
+          oio:hasDbXref "UBERON:0010230" .
+
+
+###  http://example.org/z/foot
+z:foot rdf:type owl:Class ;
+       rdfs:subClassOf z:appendage ;
+       <http://dbpedia.org/ontology/category> <https://w3id.org/biolink/vocab/AnatomicalEntity> ;
+       oio:hasDbXref "UBERON:0002387" ;
+       oio:hasExactSynonym "foot" .
+
+
+###  http://example.org/z/hand
+z:hand rdf:type owl:Class ;
+       rdfs:subClassOf z:appendage ;
+       <http://dbpedia.org/ontology/category> <https://w3id.org/biolink/vocab/AnatomicalEntity> ;
+       oio:hasDbXref "UBERON:0002398" ;
+       oio:hasExactSynonym "hand" .
+
+
+###  http://example.org/z/heart
+z:heart rdf:type owl:Class ;
+        rdfs:subClassOf z:organ ;
+        <http://dbpedia.org/ontology/category> <https://w3id.org/biolink/vocab/AnatomicalEntity> ;
+        oio:hasDbXref "UBERON:0000948" .
+
+
+###  http://example.org/z/hindlimb
+z:hindlimb rdf:type owl:Class ;
+           rdfs:subClassOf z:appendage ;
+           <http://dbpedia.org/ontology/category> <https://w3id.org/biolink/vocab/AnatomicalEntity> ;
+           rdfs:label "hindlimb" .
+
+
+###  http://example.org/z/liver
+z:liver rdf:type owl:Class ;
+        rdfs:subClassOf z:organ ;
+        <http://dbpedia.org/ontology/category> <https://w3id.org/biolink/vocab/AnatomicalEntity> ;
+        oio:hasDbXref "UBERON:0002107" .
+
+
+###  http://example.org/z/lung
+z:lung rdf:type owl:Class ;
+       rdfs:subClassOf z:organ ;
+       <http://dbpedia.org/ontology/category> <https://w3id.org/biolink/vocab/AnatomicalEntity> ;
+       oio:hasDbXref "UBERON:0002048" .
+
+
+###  http://example.org/z/organ
+z:organ rdf:type owl:Class ;
+        <http://dbpedia.org/ontology/category> <https://w3id.org/biolink/vocab/AnatomicalEntity> ;
+        oio:hasDbXref "BAD:ORGAN" ;
+        rdfs:label "ORGAN" .
+
+
+###  http://example.org/z/region
+z:region rdf:type owl:Class ;
+         <http://dbpedia.org/ontology/category> <https://w3id.org/biolink/vocab/AnatomicalEntity> ;
+         rdfs:label "REGION" .
+
+
+###  http://example.org/z/tissue
+z:tissue rdf:type owl:Class ;
+         <http://dbpedia.org/ontology/category> <https://w3id.org/biolink/vocab/AnatomicalEntity> ;
+         rdfs:label "TISSUE" .
+
+
+[ sh:declare [ sh:namespace "http://example.org/z/" ;
+               sh:prefix "z"
+             ] ,
+             [ sh:namespace "http://example.org/y/" ;
+               sh:prefix "y"
+             ] ,
+             [ sh:namespace "http://example.org/x/" ;
+               sh:prefix "x"
+             ] ,
+             [ sh:namespace "http://example.org/a/" ;
+               sh:prefix "a"
+             ] ,
+             [ sh:namespace "https://w3id.org/biolink/vocab/" ;
+               sh:prefix "biolink"
+             ]
+] .
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
